@@ -1,3 +1,12 @@
+# 修改
+1. 全局使用`霞鹜文楷`字体
+2. 提升了页面可自定义性
+3. 添加在线人数时段统计
+4. 优化整体性能（使用缓存处理玩家头像）
+5. 修复一些bug
+------
+
+
 # CraftMon
 
 就是我之前那个[服务器展示面板 Minecraft-Server-Status](https://github.com/GamerNoTitle/Minecraft-Server-Status)的重置版啦，其实我本身不怎么会用 PHP 的，那个版本大部分的东西都是拿了别人现成的轮子做的，到头来维护真的很很很狠很麻烦，所以就用我熟悉的 Python 做了一个 flask 版的
