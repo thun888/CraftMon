@@ -8,8 +8,7 @@ import sqlite3
 import time
 from threading import Thread
 import schedule
-
-
+import json
 app = Flask(__name__)
 app.template_folder = 'templates'
 
@@ -58,16 +57,20 @@ def home():
             cleaned_motd = re.sub(r'[^a-zA-Z0-9\s]', '', cleaned_motd)
         player_list = []
         for player in res.players.list:
-            try:
-                data = requests.get(f'https://playerdb.co/api/player/minecraft/{player}', timeout=5).json()
-                if data['success']:
-                    uuid = data['data']['player']['id']
-                    img = f'https://crafatar.com/renders/head/{uuid}'
-                else:
-                    img = 'https://crafatar.com/renders/head/aaaaaaaa-cf6b-4485-bef9-3957e7b7f509'
-            except requests.exceptions.ReadTimeout:
-                img = 'https://crafatar.com/renders/head/aaaaaaaa-cf6b-4485-bef9-3957e7b7f509'
+
+            # try:
+            #     data = requests.get(f'https://playerdb.co/api/player/minecraft/{player}', timeout=5).json()
+            #     if data['success']:
+            #         uuid = data['data']['player']['id']
+            #         img = f'https://crafatar.com/renders/head/{uuid}'
+            #     else:
+            #         img = 'https://crafatar.com/renders/head/aaaaaaaa-cf6b-4485-bef9-3957e7b7f509'
+            # except requests.exceptions.ReadTimeout:
+            #     img = 'https://crafatar.com/renders/head/aaaaaaaa-cf6b-4485-bef9-3957e7b7f509'
+            # 调接口也太慢了吧，上缓存
+            img = get_player_head_pic(player)
             player_list.append({'name': player, 'img': img})
+
         return render_template('index.html',
                             name = mc_name,
                             favicon = config_favicon,
@@ -110,7 +113,33 @@ def player_count_history():
 def show_404_page(e):
     return render_template('404.html'), 404
 
-
+def get_player_head_pic(name):
+    cache_file = 'player_head_pic_cache.json'
+    try:
+        with open(cache_file, 'r') as file:
+            cache = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+    
+    # 检查缓存中是否已有该玩家的记录
+    if name in cache:
+        return cache[name]
+    
+    try:
+        data = requests.get(f'https://playerdb.co/api/player/minecraft/{name}', timeout=5).json()
+        if data['success']:
+            uuid = data['data']['player']['id']
+            img = f'https://crafatar.com/renders/head/{uuid}'
+        else:
+            img = 'https://crafatar.com/renders/head/aaaaaaaa-cf6b-4485-bef9-3957e7b7f509'
+    except requests.exceptions.ReadTimeout:
+        img = 'https://crafatar.com/renders/head/aaaaaaaa-cf6b-4485-bef9-3957e7b7f509'
+    
+    cache[name] = img
+    with open(cache_file, 'w') as file:
+        json.dump(cache, file)
+    
+    return img
 # 获取 Minecraft 服务器的玩家人数
 def get_player_count():
     offline = False
@@ -152,4 +181,4 @@ if __name__ == '__main__':
     task = Thread(target=background_task)
     task.start()
 
-    app.run(host, port,debug=True, use_reloader=False)
+    app.run(host, port)
