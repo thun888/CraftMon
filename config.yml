@@ -24,6 +24,8 @@ server:
     # 预览界面的描述，可以用html书写
     descr: |
       峰间云海是一个生电服务器，里面有形形色色的玩家们。<br><a href="https://mcmap.hzchu.top:60181/" target="_blank"><u>查看在线地图</u></a>
+      一周目宣传片：<br>
+      <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=316642962&bvid=BV1BP41167UW&cid=1218587437&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
     images: # 服务器的预览图片，你需要把文件丢在images文件夹里面，然后复制文件名在这里
       - https://onep.hzchu.top/mount/pic/2023/07/09/64a9ed6c50c22.webp
       - https://onep.hzchu.top/mount/pic/myself/2024/07/669472504bc82.png?fmt=webp
@@ -33,3 +35,6 @@ server:
   contact:
     content: |  # 这里是加入我们页面的内容，请使用html书写（要不然会很丑）
       <a href="https://jq.qq.com/?_wv=1027&k=erVXhRym" target="_blank"><button>加入QQ群</button></a>
+  footer:
+    content: |  # 这里是页面底部的内容，请使用html书写
+      <script defer src="https://seeyou.hzchu.top/seeyou.js" data-website-id="66c2414e-7322-4d21-9fd6-bc736ac43b74"></script>

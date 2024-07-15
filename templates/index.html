@@ -14,7 +14,7 @@
 	{% endif %}
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="icon" type="image/png" href="{{ favicon }}">
+	<link rel="shortcut icon" type="image/x-icon" href="{{ favicon }}">
 	<link rel="stylesheet" href="/assets/css/main.css" />
 	<noscript>
 		<link rel="stylesheet" href="/assets/css/noscript.css" />
@@ -32,8 +32,7 @@
 			<a href="#preview" class="icon solid fa-folder"><span>服务器预览</span></a>
 			<a href="#monitor" class="icon solid fa-chart-bar"><span>状态监控</span></a>
 			<a href="#contact" class="icon solid fa-envelope"><span>加入我们</span></a>
-			<a href="https://blog.hzchu.top/wiki/fcloud/" class="icon solid fa-book-open"
-				target="_blank"><span>文档及说明</span></a>
+			<a href="https://blog.hzchu.top/wiki/fcloud/" class="icon solid fa-book" target="_blank"><span>文档及说明</span></a>
 		</nav>
 
 		<!-- Main -->
@@ -73,6 +72,8 @@
 				<p>
 					{{ preview_descr|safe }}
 				</p>
+				<hr>
+				<p>图片展示</p>
 				<section>
 					<div class="row">
 						{% for image in preview_images %}
@@ -129,6 +130,6 @@
 	<script src="/assets/js/util.js"></script>
 	<script src="/assets/js/main.js"></script>
 	<script src="/assets/js/showchart.js"></script>
+	{{ footer_content|safe }}
 </body>
-
 </html>

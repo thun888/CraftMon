@@ -6,7 +6,7 @@ from flask import Flask, render_template, send_from_directory, jsonify
 from utils.mcclient import QueryClient
 import sqlite3
 import time
-from threading import Thread
+from threading import Thread, Event
 import schedule
 import json
 app = Flask(__name__)
@@ -29,10 +29,16 @@ join_content = conf['server']['contact']['content']
 config_motd = conf['server']['motd']
 config_external_host = conf['server']['external-host']
 config_favicon = conf['server']['favicon']
+page_footer_content = conf['server']['footer']['content']
+
+
 host = conf['web']['host']
 port = conf['web']['port']
 # for Minecraft Java servers (needs to be enabled on the server)
 query_client = QueryClient(mc_host, port=mc_query)
+
+# 定义一个标志来控制后台任务
+stop_event = Event()
 
 @ app.route('/assets/<path:filename>')
 def serve_static(filename):
@@ -85,7 +91,8 @@ def home():
                             preview_images = mc_preview_images,
                             join_content = join_content,
                             player_list = player_list,
-                            offline = offline)
+                            offline = offline,
+                            footer_content = page_footer_content)
     else:
         return render_template('index.html',
                             name = mc_name,
@@ -97,7 +104,8 @@ def home():
                             preview_descr = mc_preview_descr,
                             preview_images = mc_preview_images,
                             join_content = join_content,
-                            offline = offline)
+                            offline = offline,
+                            footer_content = page_footer_content)
         
 
     
@@ -178,7 +186,14 @@ if __name__ == '__main__':
     conn.commit()
 
     # 启动后台任务
-    task = Thread(target=background_task)
+    task = Thread(target=background_task, args=(stop_event,))
     task.start()
 
-    app.run(host, port)
+    try:
+        app.run(host, port)
+        pass
+    finally:
+        # 设置标志以停止后台任务
+        stop_event.set()
+        # 等待后台任务完成
+        task.join()
