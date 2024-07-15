@@ -15,7 +15,7 @@ server:
   # 查询信息实际用的是query这个端口，在server.properties里面有，需要自行设置端口并且把这个功能打开
   query: 26566
   # 自定义服务器motd
-  motd: "Welcome to the FClouds Server!"
+  motd: "Welcome to the FCloud Server!"
   # 自定义页面icon
   favicon: /assets/favicon.ico
   logo: https://onep.hzchu.top/mount/pic/myself/2024/07/6694aaafc2d36.png?fmt=webp

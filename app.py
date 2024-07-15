@@ -169,9 +169,9 @@ def save_player_count():
 
 
 # 后台任务，每分钟检查一次玩家人数
-def background_task():
+def background_task(stop_event):
     schedule.every(5).minutes.do(save_player_count)
-    while True:
+    while not stop_event.is_set():
         schedule.run_pending()
         time.sleep(1)
 
@@ -186,7 +186,7 @@ if __name__ == '__main__':
     conn.commit()
 
     # 启动后台任务
-    task = Thread(target=background_task, args=(stop_event,))
+    task = Thread(target=background_task, args=(stop_event))
     task.start()
 
     try:
