@@ -1,6 +1,6 @@
 web:
   host: 0.0.0.0
-  port: 8080
+  port: 44450
 
 server:
   # 如果你想显示你的服务器连接信息的话，就把下面这个show-info改为true，否则保持不动
@@ -18,14 +18,15 @@ server:
   motd: "Welcome to the FClouds Server!"
   # 自定义页面icon
   favicon: /assets/favicon.ico
-  logo: https://onep.hzchu.top/mount/pic/myself/2024/07/66946d9fd0cbf.jpg?fmt=webp
+  logo: https://onep.hzchu.top/mount/pic/myself/2024/07/6694aaafc2d36.png?fmt=webp
   preview:  # 服务器预览部分
     title: 嘿！这里是峰间云海
     # 预览界面的描述，可以用html书写
     descr: |
-      峰间云海是一个生电服务器，里面有形形色色的玩家们。<br><a href="https://mcmap.hzchu.top:60181/" target="_blank"><u>查看在线地图</u></a>
+      峰间云海是一个生电服务器，里面有形形色色的玩家们。<br>
+      <a href="https://mcmap.hzchu.top:60181/" target="_blank"><u>查看在线地图</u></a><br>
       一周目宣传片：<br>
-      <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=316642962&bvid=BV1BP41167UW&cid=1218587437&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+      <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=316642962&bvid=BV1BP41167UW&cid=1218587437&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
     images: # 服务器的预览图片，你需要把文件丢在images文件夹里面，然后复制文件名在这里
       - https://onep.hzchu.top/mount/pic/2023/07/09/64a9ed6c50c22.webp
       - https://onep.hzchu.top/mount/pic/myself/2024/07/669472504bc82.png?fmt=webp

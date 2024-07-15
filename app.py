@@ -195,5 +195,6 @@ if __name__ == '__main__':
     finally:
         # 设置标志以停止后台任务
         stop_event.set()
+        print('接受到停止命令，正在停止后台任务...')
         # 等待后台任务完成
         task.join()
