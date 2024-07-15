@@ -4,7 +4,7 @@
 @import 'libs/vendor';
 @import 'libs/breakpoints';
 @import 'libs/html-grid';
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic');
+@import url('https://static.hzchu.top/lxgw-wenkai-screen-webfont%401.1.0/lxgwwenkaiscreen.css');
 @import url('fontawesome-all.min.css');
 
 /*
@@ -146,7 +146,7 @@
 	}
 
 	body, input, textarea, select {
-		font-family: 'Source Sans Pro', sans-serif;
+		font-family: 'LXGW WenKai Screen', sans-serif;
 		font-weight: 300;
 		color: #777777;
 		font-size: 20pt;
@@ -660,7 +660,10 @@
 			'min-height 0.5s ease-in-out',
 			'max-height 0.5s ease-in-out'
 		));
-
+		a {
+			text-decoration:none;
+			color: inherit;
+		}
 		> .panel {
 			@include vendor('transition', 'opacity 0.25s ease-in-out');
 			margin-bottom: 0;
@@ -713,7 +716,6 @@
 						@include vendor('object-fit', 'cover');
 						@include vendor('object-position', 'center');
 					}
-
 					.arrow {
 						display: block;
 						position: absolute;

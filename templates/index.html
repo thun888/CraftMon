@@ -14,7 +14,7 @@
 	{% endif %}
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="icon" type="image/png" href="{{ logo }}">
+	<link rel="icon" type="image/png" href="{{ favicon }}">
 	<link rel="stylesheet" href="/assets/css/main.css" />
 	<noscript>
 		<link rel="stylesheet" href="/assets/css/noscript.css" />
@@ -28,11 +28,12 @@
 
 		<!-- Nav -->
 		<nav id="nav">
-			<a href="#" class="icon solid fa-home"><span>主页</span></a>
+			<a href="#home" class="icon solid fa fa-home"><span>主页</span></a>
 			<a href="#preview" class="icon solid fa-folder"><span>服务器预览</span></a>
+			<a href="#monitor" class="icon solid fa-chart-bar"><span>状态监控</span></a>
 			<a href="#contact" class="icon solid fa-envelope"><span>加入我们</span></a>
-			<a href="https://github.com/GamerNoTitle/CraftMon" class="icon brands fa-github"
-				target="_blank"><span>Github</span></a>
+			<a href="https://blog.hzchu.top/wiki/fcloud/" class="icon solid fa-book-open"
+				target="_blank"><span>文档及说明</span></a>
 		</nav>
 
 		<!-- Main -->
@@ -48,7 +49,7 @@
 					<p>{{ motd }}</p>
 					{% endif %}
 					{% if show_info %}
-					<p>服务器地址：<strong>{{host}}:{{port}}</strong></p>
+					<p>服务器地址：<strong>{{ external_host }}</strong></p>
 					{% endif %}
 					{% if not offline %}
 					<hr>
@@ -76,12 +77,27 @@
 					<div class="row">
 						{% for image in preview_images %}
 						<div class="col-4 col-6-medium col-12-small">
-							<a href="#" class="image fit"><img src="/images/{{image}}" alt=""></a>
+							<a href="{{image}}" class="image fit"><img src="{{image}}" alt=""></a>
 						</div>
 						{% endfor %}
 					</div>
 				</section>
+				<p style="font-size: 0.75em;">如果您希望您的图片展示在这里，可以联系管理员哦φ(*￣0￣)</p>
 			</article>
+
+			<!-- Monitor -->
+			<article id="monitor" class="panel">
+				<!-- <header>
+					<h2>{{ preview_title }}</h2>
+				</header>
+				<p>
+					{{ preview_descr|safe }}
+				</p> -->
+				<div id="player_count_history" style="width: 100%; height: 300px;"></div>
+				<u><a style="font-size: 0.75em;" href="https://status.hzchu.top/status/web" target="_blank">服务状态监控</p></u>
+			</article>
+
+
 
 			<!-- Contact -->
 			<article id="contact" class="panel">
@@ -96,25 +112,23 @@
 		<!-- Footer -->
 		<div id="footer">
 			<ul class="copyright">
-				<li>Copyright &copy; 2022-
-					<script>document.write(new Date().getFullYear())</script> <a href="https://bili33.top"
-						target="_blank"><u>GamerNoTitle</u></a>.
-				</li>
-				<li>Open-Source project <a href="https://github.com/GamerNoTitle/CraftMon"
-						target="_blank"><u>CraftMon</u></a> is now avaliabel on Github.</li>
+				<li>Copyright &copy; 2022-<script>document.write(new Date().getFullYear())</script> <a href="https://bili33.top" target="_blank"><u>GamerNoTitle</u></a>.</li>
+				<li>Open-Source project <a href="https://github.com/GamerNoTitle/CraftMon" target="_blank"><u>CraftMon</u></a> is now avaliabel on Github.</li>
 				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				<li>Modified by: <a href="https://www.hzchu.top" target="_blank"><u>Thun888</u></a></li>
 			</ul>
 		</div>
 
 	</div>
 
 	<!-- Scripts -->
-	<script src="/assets/js/jquery.min.js"></script>
+	<script src="https://static.hzchu.top/jquery/3.2.1/files/dist/jquery.min.js"></script>
+	<script src="/assets/js/echarts.min.js"></script>
 	<script src="/assets/js/browser.min.js"></script>
 	<script src="/assets/js/breakpoints.min.js"></script>
 	<script src="/assets/js/util.js"></script>
 	<script src="/assets/js/main.js"></script>
-
+	<script src="/assets/js/showchart.js"></script>
 </body>
 
 </html>
