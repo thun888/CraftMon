@@ -72,6 +72,11 @@
 				<p>
 					{{ preview_descr|safe }}
 				</p>
+				{% if extra %}
+				<hr>
+				<p>近期聊天</p>
+				<div id="chat_history"></div>
+				{% endif %}
 				<hr>
 				<p>图片展示</p>
 				<section>
@@ -130,6 +135,9 @@
 	<script src="/assets/js/util.js"></script>
 	<script src="/assets/js/main.js"></script>
 	<script src="/assets/js/showchart.js"></script>
+	{% if extra %}
+	<script src="/assets/js/extra.js"></script>
+	{% endif %}
 	{{ footer_content|safe }}
 </body>
 </html>

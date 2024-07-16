@@ -2,7 +2,7 @@ import os
 import yaml
 import re
 import requests
-from flask import Flask, render_template, send_from_directory, jsonify
+from flask import Flask, render_template, send_from_directory, jsonify, request, redirect
 from utils.mcclient import QueryClient
 import sqlite3
 import time
@@ -29,6 +29,7 @@ join_content = conf['server']['contact']['content']
 config_motd = conf['server']['motd']
 config_external_host = conf['server']['external-host']
 config_favicon = conf['server']['favicon']
+config_extra = conf['server']['extra']
 page_footer_content = conf['server']['footer']['content']
 
 
@@ -92,7 +93,8 @@ def home():
                             join_content = join_content,
                             player_list = player_list,
                             offline = offline,
-                            footer_content = page_footer_content)
+                            footer_content = page_footer_content,
+                            extra = config_extra)
     else:
         return render_template('index.html',
                             name = mc_name,
@@ -105,18 +107,30 @@ def home():
                             preview_images = mc_preview_images,
                             join_content = join_content,
                             offline = offline,
-                            footer_content = page_footer_content)
+                            footer_content = page_footer_content,
+                            extra = config_extra)
         
 
     
 # 获取玩家人数历史记录的接口
 @app.route('/api/player_count_history', methods=['GET'])
-def player_count_history():
+def api_player_count_history():
     c.execute('SELECT * FROM server_population ORDER BY "timestamp" DESC LIMIT 0,2016')
     data = c.fetchall()
 
     data_dict = {item[0]: item[1] for item in data}
     return jsonify(data_dict)
+
+# 获取玩家头像的接口
+@app.route('/get/player_head_pic', methods=['GET'])
+def api_get_player_head_pic():
+    name = request.args.get('playername', default='notch', type=str)
+    img = get_player_head_pic(name)
+    # 301
+    # return redirect(img, code=301)
+    return jsonify({'img': img})
+
+
 @app.errorhandler(404)
 def show_404_page(e):
     return render_template('404.html'), 404
@@ -148,6 +162,7 @@ def get_player_head_pic(name):
         json.dump(cache, file)
     
     return img
+
 # 获取 Minecraft 服务器的玩家人数
 def get_player_count():
     offline = False

@@ -5,7 +5,7 @@ var player_counts = []
 var chart = echarts.init(document.getElementById('player_count_history'));
 
 
-async function updateData() {
+async function updateChartData() {
   const response = await fetch('/api/player_count_history');
   const data_dict = await response.json();
   // 转换为当地时间
@@ -32,14 +32,18 @@ async function updateData() {
   chart.setOption(option);
 }
 
+//页面渲染完成时执行
+addEventListener("load",function(){
+  updateChartData();
+})
 
-setInterval(updateData, 60000);  // 每60秒更新一次
-updateData();
+setInterval(updateChartData, 60000);  // 每60秒更新一次
 
 window.addEventListener('resize', function() {
     chart.resize();
 });
 
+// 用于切换页面时使图表正常显示
 const target = document.querySelector('#monitor');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {

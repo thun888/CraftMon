@@ -19,11 +19,13 @@ server:
   # 自定义页面icon
   favicon: /assets/favicon.ico
   logo: https://onep.hzchu.top/mount/pic/myself/2024/07/6694aaafc2d36.png?fmt=webp
+  # 添加部分自用接口，不需要请关闭
+  extra: true
   preview:  # 服务器预览部分
     title: 嘿！这里是峰间云海
     # 预览界面的描述，可以用html书写
     descr: |
-      峰间云海是一个生电服务器，里面有形形色色的玩家们。<br>
+      峰间云海是一个生电服务器，里面有形形色色的玩家们。ヾ(≧▽≦*)o<br>
       <a href="https://mcmap.hzchu.top:60181/" target="_blank"><u>查看在线地图</u></a><br>
       一周目宣传片：<br>
       <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=316642962&bvid=BV1BP41167UW&cid=1218587437&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
@@ -38,4 +40,4 @@ server:
       <a href="https://jq.qq.com/?_wv=1027&k=erVXhRym" target="_blank"><button>加入QQ群</button></a>
   footer:
     content: |  # 这里是页面底部的内容，请使用html书写
-      <script defer src="https://seeyou.hzchu.top/seeyou.js" data-website-id="66c2414e-7322-4d21-9fd6-bc736ac43b74"></script>
+      <script defer src="https://seeyou.hzchu.top/seeyou.js" data-website-id="66c2414e-7322-4d21-9fd6-bc736ac43b74" data-domains="fclouds.hzchu.top"></script>
