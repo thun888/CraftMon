@@ -186,7 +186,7 @@ if __name__ == '__main__':
     conn.commit()
 
     # 启动后台任务
-    task = Thread(target=background_task, args=(stop_event))
+    task = Thread(target=background_task, args=(stop_event,))
     task.start()
 
     try:
