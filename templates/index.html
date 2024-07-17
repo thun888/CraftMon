@@ -100,7 +100,11 @@
 					{{ preview_descr|safe }}
 				</p> -->
 				<div id="player_count_history" style="width: 100%; height: 300px;"></div>
+				{% if extra %}
 				<u><a style="font-size: 0.75em;" href="https://status.hzchu.top/status/web" target="_blank">服务状态监控</p></u>
+				<img src="https://status.hzchu.top/api/badge/29/status" alt="在线状态">
+				<img src="https://status.hzchu.top/api/badge/29/uptime" alt="在线时间">
+				{% endif %}
 			</article>
 
 
