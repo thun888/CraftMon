@@ -42,8 +42,29 @@ async function fetchPlayerHeadPics(playerNames) {
     return results;
 }
 
-//页面渲染完成时执行
-updateChatHistoryData();
 
+async function updateServerStatus() {
+    const response = await fetch('https://mcserver-api.757678.xyz/get/tps');
+    const data = await response.json();
+    document.getElementById('server_now_cpu').textContent = `CPU：${data.cpu.process}%(系统：${data.cpu.system}%)`;
+    document.getElementById('server_now_mem').textContent = `MEM：${data.ram.memory_process}M(系统剩余：${data.ram.memory_system}M)`;
+    document.getElementById('server_now_tps').textContent = `TPS(1m)：${data.tps['1m']}`;
+    document.getElementById('server_now_mspt').textContent = `MSPT(1m)：${data.mspt['1m']}`;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+updateChatHistoryData();
+updateServerStatus();
 
 setInterval(updateChatHistoryData, 60000);  // 每60秒更新一次
+setInterval(updateServerStatus, 60000);

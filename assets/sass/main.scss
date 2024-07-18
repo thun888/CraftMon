@@ -673,6 +673,9 @@
 		#chat_history #history_msg_info:hover {
 			color: #777777;
 		}
+		.smallfont {
+			font-size: 0.75em;
+		}
 		> .panel {
 			@include vendor('transition', 'opacity 0.25s ease-in-out');
 			margin-bottom: 0;

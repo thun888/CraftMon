@@ -88,7 +88,7 @@
 						{% endfor %}
 					</div>
 				</section>
-				<p style="font-size: 0.75em;">如果您希望您的图片展示在这里，可以联系管理员哦φ(*￣0￣)</p>
+				<p class="smallfont">如果您希望您的图片展示在这里，可以联系管理员哦φ(*￣0￣)</p>
 			</article>
 
 			<!-- Monitor -->
@@ -101,9 +101,19 @@
 				</p> -->
 				<div id="player_count_history" style="width: 100%; height: 300px;"></div>
 				{% if extra %}
-				<u><a style="font-size: 0.75em;" href="https://status.hzchu.top/status/web" target="_blank">服务状态监控</p></u>
+				<hr>
+				<p>当前服务状态</p>
+				<u><a style="font-size: 0.75em;" href="https://status.hzchu.top/status/web" target="_blank">服务状态监控</a></u>
+				<br>
 				<img src="https://status.hzchu.top/api/badge/29/status" alt="在线状态">
 				<img src="https://status.hzchu.top/api/badge/29/uptime" alt="在线时间">
+				<br>
+				<div id="server_now_status">
+					<span class="smallfont" id="server_now_cpu">CPU:load</span>
+					<span class="smallfont" id="server_now_mem">MEM:load</span>
+					<span class="smallfont" id="server_now_tps">TPS(1m):load</span>
+					<span class="smallfont" id="server_now_mspt">MSPT(1m):load</span>
+				</div>
 				{% endif %}
 			</article>
 
